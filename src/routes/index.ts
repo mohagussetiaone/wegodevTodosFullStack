@@ -1,5 +1,5 @@
 import { Router } from "express";
-import bodyParser, { json } from 'body-parser'
+import bodyParser from 'body-parser'
 
 import {
     getTodos,

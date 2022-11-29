@@ -1,10 +1,9 @@
-import assert from "assert"
 import { Request, Response } from "express"
 import TodoModel from "../../models/todo"
 import { Todo } from "../../types/todo"
 
 // Declare getTodos dengan async function (semua todos)
-export const getTodos = async (req: Request, res: Response) => {
+export const getTodos = async (req: Request, res: Response): Promise<void> => {
     // inisialisasi todos untuk menerima schema Todo berbentuk Array
     // Menggunakan await untuk hasil dari schema TodoModel untuk mencari data (method find dari moongose dari db lewat todoModels)
     const todos: Todo[] = await TodoModel.find()
@@ -13,7 +12,7 @@ export const getTodos = async (req: Request, res: Response) => {
 }
 
 // Function untuk mendapatkan params id
-export const getTodo = async (req: Request, res: Response) => {
+export const getTodo = async (req: Request, res: Response): Promise<void> => {
     // Method Await dari asycn untuk menerima TodoModel dengan diikuti oleh methode findById untuk mencari ID dari request params dari id
     // didalamnya menerima parameter kembali yakni err untuk handling error dan result untuk handling result
     await TodoModel.findById(req.params.id, (err, result) => {
@@ -105,7 +104,7 @@ export const updateTodo = async (req: Request, res: Response): Promise<void> => 
 }
 
 // declare untuk function menghapus todo yang menerima paramater request dan respon dengan asycn
-export const removeTodo = async (req: Request, res: Response) => {
+export const removeTodo = async (req: Request, res: Response): Promise<void> => {
     // destruct id untuk handle params id
     const {
         params: { id },
